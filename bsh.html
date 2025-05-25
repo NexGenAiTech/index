@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bombay Shut House - Premium Tailoring Services</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&display=swap');
+:root {
+  --primary: #1a1a2e;
+  --secondary: #d4af37;
+  --light: #f8f9fa;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  background: #fff;
+  line-height: 1.6;
+}
+/* Header */
+header {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+}
+.logo span {
+  color: var(--secondary);
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+.nav-links li {
+  margin-left: 30px;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 500;
+  transition: 0.3s;
+}
+.nav-links a:hover {
+  color: var(--secondary);
+}
+/* Hero Section */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 150px 20px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 30px;
+}
+.btn {
+  display: inline-block;
+  background: var(--secondary);
+  color: var(--primary);
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.btn:hover {
+  background: #c9a227;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+/* Products Section */
+.services {
+  padding: 80px 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.section-title h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--primary);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--secondary);
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+.service-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+.service-img {
+  height: 300px;
+  overflow: hidden;
+}
+.service-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+.service-card:hover .service-img img {
+  transform: scale(1.05);
+}
+.service-content {
+  padding: 20px;
+  text-align: center;
+}
+.service-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+.service-content p {
+  color: #666;
+  margin-bottom: 15px;
+}
+.price {
+  font-weight: 700;
+  color: var(--secondary);
+  font-size: 1.3rem;
+  margin: 10px 0;
+}
+.order-btn {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.order-btn:hover {
+  background: var(--secondary);
+  color: var(--primary);
+}
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+}
+.modal-content {
+  background: white;
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 800px;
+  position: relative;
+  animation: modalOpen 0.4s;
+}
+@keyframes modalOpen {
+  from {opacity: 0; transform: translateY(-50px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+.close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+/* Product Details Content */
+.modal-body {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.modal-img {
+  flex: 1;
+  min-width: 300px;
+}
+.modal-img img {
+  width: 100%;
+  border-radius: 10px;
+}
+.modal-info {
+  flex: 1;
+  min-width: 300px;
+}
+.color-options {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+.color-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ddd;
+}
+.color-btn.selected {
+  border-color: var(--secondary);
+}
+.fabric-options {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+.fabric-btn {
+  padding: 8px 15px;
+  background: #f1f1f1;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.fabric-btn.selected {
+  background: var(--secondary);
+  color: white;
+}
+.add-to-cart-btn {
+  background: var(--secondary);
+  color: var(--primary);
+  border: none;
+  padding: 12px 30px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+}
+/* Measurement Form */
+.measurement {
+  background: #f8f9fa;
+  padding: 80px 5%;
+}
+.measurement-form {
+  background: white;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.form-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: 'Playfair Display', serif;
+  color: var(--primary);
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+.form-row .form-group {
+  flex: 1;
+}
+.submit-btn {
+  background: var(--secondary);
+  color: var(--primary);
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: block;
+  margin: 30px auto 0;
+}
+.submit-btn:hover {
+  background: #c9a227;
+  transform: translateY(-3px);
+}
+/* WhatsApp Float */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #25D366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+/* Footer */
+footer {
+  background: var(--primary);
+  color: white;
+  padding: 50px 5% 20px;
+}
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+.footer-column h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+.footer-column h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: var(--secondary);
+}
+.footer-links {
+  list-style: none;
+}
+.footer-links li {
+  margin-bottom: 10px;
+}
+.footer-links a {
+  color: #ddd;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.footer-links a:hover {
+  color: var(--secondary);
+  padding-left: 5px;
+}
+.contact-info {
+  margin-top: 20px;
+}
+.contact-info p {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  color: white;
+  transition: 0.3s;
+}
+.social-links a:hover {
+  background: var(--secondary);
+  transform: translateY(-3px);
+}
+.copyright {
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+  }
+  .nav-links {
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-links li {
+    margin: 10px 15px;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  .modal-body {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+  <nav class="navbar">
+    <div class="logo">Bombay <span>Shut</span> House</div>
+    <ul class="nav-links">
+      <li><a href="#home"><b>Home</b></a></li>
+      <li><a href="#products"><b>Products</b></a></li>
+      <li><a href="#measurement"><b>Get Measured</b></a></li>
+      <li><a href="#contact"><b>Contact</b></a></li>
+    </ul>
+  </nav>
+</header>
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <h1>Premium Tailoring Services</h1>
+  <p>Custom stitched formal pants, shirts, and coats with perfect fit and premium fabrics</p>
+  <a href="#measurement" class="btn">Get Measured Now</a>
+</section>
+<!-- Products Section -->
+<section class="services" id="products">
+  <div class="section-title">
+    <h2>Our Products</h2>
+  </div>
+  <div class="services-grid">
+    <!-- Product 1 -->
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Formal Suit" loading="lazy">
+      </div>
+      <div class="service-content">
+        <h3>Premium Suits</h3>
+        <p>Elegant coat-pant sets for weddings and parties.</p>
+        <div class="price">Starting from ₹1,999</div>
+        <a href="#measurement" class="order-btn">Order Now</a>
+      </div>
+    </div>
+    <!-- Product 2 -->
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://th.bing.com/th/id/OIP.WxXU00YwU62mcquVfzgUcwHaLH?cb=iwp2&rs=1&pid=ImgDetMain" alt="Sherwani" loading="lazy">
+      </div>
+      <div class="service-content">
+        <h3>Designer Sherwanis</h3>
+        <p>Traditional wedding wear with modern designs.</p>
+        <div class="price">Starting from ₹7,499</div>
+        <a href="#measurement" class="order-btn">Order Now</a>
+      </div>
+    </div>
+    <!-- Product 3 -->
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Formal Shirt" loading="lazy">
+      </div>
+      <div class="service-content">
+        <h3>Luxury Shirts</h3>
+        <p>Premium cotton shirts for office and occasions.</p>
+        <div class="price">Starting from ₹1,499</div>
+        <a href="#measurement" class="order-btn">Order Now</a>
+      </div>
+    </div>
+    <!-- Product 4 -->
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Designer Blazer" loading="lazy">
+      </div>
+      <div class="service-content">
+        <h3>Designer Blazers</h3>
+        <p>Trendy blazers for special occasions.</p>
+        <div class="price">Starting from ₹2,499</div>
+        <a href="#measurement" class="order-btn">Order Now</a>
+      </div>
+    </div>
+    <!-- Product 5 -->
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Wedding Kurta" loading="lazy">
+      </div>
+      <div class="service-content">
+        <h3>Wedding Kurtas</h3>
+        <p>Exclusive designer kurtas for groom.</p>
+        <div class="price">Starting from ₹1,499</div>
+        <a href="#measurement" class="order-btn">Order Now</a>
+      </div>
+    </div>
+    <!-- Product 6 -->
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://th.bing.com/th/id/OIP.xGQw1trliqtaXSf062SHngHaLH?w=196&h=294&c=7&r=0&o=7&cb=iwp2&dpr=1.5&pid=1.7&rm=3" alt="Tuxedo" loading="lazy">
+      </div>
+      <div class="service-content">
+        <h3>Classic Tuxedos</h3>
+        <p>Western formal wear for special events.</p>
+        <div class="price">Starting from ₹5,999</div>
+        <a href="#measurement" class="order-btn">Order Now</a>
+      </div>
+    </div>
+    <!-- Product 7 -->
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://th.bing.com/th/id/OIP.FMt-S_eWnT2jtRsKz5p_ygHaJ4?cb=iwp2&pid=ImgDet&w=173&h=230&c=7&dpr=1.5" alt="Jodhpuri Suit" loading="lazy">
+      </div>
+      <div class="service-content">
+        <h3>Jodhpuri Suits</h3>
+        <p>Royal ethnic wear with contemporary touch.</p>
+        <div class="price">Starting from ₹7,999</div>
+        <a href="#measurement" class="order-btn">Order Now</a>
+      </div>
+    </div>
+    <!-- Product 8 -->
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://th.bing.com/th/id/OIP.Qg3M1aY60FgiPC0SYSWFsQAAAA?cb=iwp2&w=297&h=408&rs=1&pid=ImgDetMain" alt="Indo-Western" loading="lazy">
+      </div>
+      <div class="service-content">
+        <h3>Indo-Western</h3>
+        <p>Fusion outfits blending Indian and Western styles.</p>
+        <div class="price">Starting from ₹6,499</div>
+        <a href="#measurement" class="order-btn">Order Now</a>
+      </div>
+    </div>
+    <!-- Product 9 -->
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://th.bing.com/th/id/OIP.AK3SPSHvjKTmrQYJKpefigHaJ2?cb=iwp2&pid=ImgDet&w=173&h=229&c=7&dpr=1.5" alt="Waistcoat" loading="lazy">
+      </div>
+      <div class="service-content">
+        <h3>Designer Waistcoats</h3>
+        <p>Stylish waistcoats to complete your look.</p>
+        <div class="price">Starting from ₹2,999</div>
+        <a href="#measurement" class="order-btn">Order Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Product Details Modal -->
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="modal-body">
+      <!-- Content loaded dynamically via JavaScript -->
+    </div>
+  </div>
+</div>
+<!-- Measurement Form -->
+<section class="measurement" id="measurement">
+  <div class="measurement-form">
+    <h2 class="form-title">Custom Measurement Form</h2>
+    <form id="measurementForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="product">Select Product</label>
+        <select id="product" name="product" required>
+          <option value="">-- Select Product --</option>
+          <option value="Premium Suit">Premium Suit</option>
+          <option value="Designer Sherwani">Designer Sherwani</option>
+          <option value="Luxury Shirt">Luxury Shirt</option>
+          <option value="Designer Blazer">Designer Blazer</option>
+          <option value="Wedding Kurta">Wedding Kurta</option>
+          <option value="Classic Tuxedo">Classic Tuxedo</option>
+          <option value="Jodhpuri Suit">Jodhpuri Suit</option>
+          <option value="Indo-Western">Indo-Western</option>
+          <option value="Designer Waistcoat">Designer Waistcoat</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="measurements">Special Measurements (in inches)</label>
+        <textarea id="measurements" name="measurements" placeholder="Chest: **, Waist:** , Sleeve: __, etc."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="delivery">Expected Delivery Date</label>
+        <input type="date" id="delivery" name="delivery" required>
+      </div>
+      <button type="submit" class="submit-btn">Submit Measurements</button>
+    </form>
+  </div>
+</section>
+<!-- Footer -->
+<footer id="contact">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h3>Bombay Shut House</h3>
+      <p>Premium tailoring services with perfect fit and premium fabrics.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#measurement">Get Measured</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Contact Us</h3>
+      <div class="contact-info">
+        <p><i class="fas fa-map-marker-alt"></i> 123 Tailor Street, Mumbai</p>
+        <p><i class="fas fa-phone"></i> +91 9876543210</p>
+        <p><i class="fas fa-envelope"></i> info@bombayshuthouse.com</p>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>&copy; 2023 Bombay Shut House. All Rights Reserved.</p>
+  </div>
+</footer>
+<!-- WhatsApp Float -->
+<a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+<!-- JavaScript -->
+<script>
+// Product Data with Colors/Fabrics
+const products = {
+  "Premium Suits": {
+    colors: ["#1a1a2e", "#654321", "#000000"],
+    fabrics: ["Wool", "Linen", "Polyester"],
+    description: "Elegant coat-pant sets for weddings and parties with premium stitching and perfect fit."
+  },
+  "Designer Sherwanis": {
+    colors: ["#d4af37", "#800020", "#000080"],
+    fabrics: ["Silk", "Brocade"],
+    description: "Traditional wedding wear with modern designs and royal embroidery work."
+  },
+  "Luxury Shirts": {
+    colors: ["#ffffff", "#0000ff", "#808080"],
+    fabrics: ["Cotton", "Linen"],
+    description: "Premium cotton shirts for office and occasions with perfect collar fitting."
+  },
+  "Designer Blazers": {
+    colors: ["#000000", "#8B0000", "#006400"],
+    fabrics: ["Wool", "Polyester"],
+    description: "Trendy blazers for special occasions with custom fitting options."
+  },
+  "Wedding Kurtas": {
+    colors: ["#FFD700", "#800000", "#000000"],
+    fabrics: ["Silk", "Cotton"],
+    description: "Exclusive designer kurtas for groom with intricate embroidery work."
+  },
+  "Classic Tuxedos": {
+    colors: ["#000000", "#1a1a2e"],
+    fabrics: ["Wool", "Polyester"],
+    description: "Western formal wear for special events with perfect tailoring."
+  },
+  "Jodhpuri Suits": {
+    colors: ["#4B0082", "#000000", "#800000"],
+    fabrics: ["Brocade", "Silk"],
+    description: "Royal ethnic wear with contemporary touch and detailed embroidery."
+  },
+  "Indo-Western": {
+    colors: ["#1a1a2e", "#654321", "#000000"],
+    fabrics: ["Cotton", "Linen"],
+    description: "Fusion outfits blending Indian and Western styles uniquely."
+  },
+  "Designer Waistcoats": {
+    colors: ["#000000", "#800000", "#d4af37"],
+    fabrics: ["Wool", "Silk"],
+    description: "Stylish waistcoats to complete your look with perfect fitting."
+  }
+};
+// Modal Functionality
+const modal = document.getElementById("productModal");
+const closeBtn = document.querySelector(".close");
+document.querySelectorAll(".service-card").forEach(card => {
+  card.addEventListener("click", function() {
+    const productName = this.querySelector("h3").textContent;
+    const productImg = this.querySelector("img").src;
+    const productPrice = this.querySelector(".price").textContent;
+    const productData = products[productName];
+    document.querySelector(".modal-body").innerHTML = `
+      <div class="modal-img">
+        <img src="${productImg}" alt="${productName}">
+      </div>
+      <div class="modal-info">
+        <h2>${productName}</h2>
+        <p class="modal-price">${productPrice}</p>
+        <p>${productData.description}</p>
+        <h4>Select Color:</h4>
+        <div class="color-options">
+          ${productData.colors.map((color, index) => `
+            <div class="color-btn ${index === 0 ? 'selected' : ''}"
+              style="background: ${color}"
+              data-color="${color}"></div>
+          `).join("")}
+        </div>
+        <h4>Select Fabric:</h4>
+        <div class="fabric-options">
+          ${productData.fabrics.map((fabric, index) => `
+            <button class="fabric-btn ${index === 0 ? 'selected' : ''}">${fabric}</button>
+          `).join("")}
+        </div>
+        <button class="add-to-cart-btn">Add to Cart</button>
+      </div>
+    `;
+    modal.style.display = "block";
+    // Color Selection
+    document.querySelectorAll(".color-btn").forEach(btn => {
+      btn.addEventListener("click", function() {
+        document.querySelectorAll(".color-btn").forEach(b => b.classList.remove("selected"));
+        this.classList.add("selected");
+      });
+    });
+    // Fabric Selection
+    document.querySelectorAll(".fabric-btn").forEach(btn => {
+      btn.addEventListener("click", function() {
+        document.querySelectorAll(".fabric-btn").forEach(b => b.classList.remove("selected"));
+        this.classList.add("selected");
+      });
+    });
+    // Add to Cart with WhatsApp Integration
+    document.querySelector(".add-to-cart-btn").addEventListener("click", function() {
+      const selectedColor = document.querySelector(".color-btn.selected").style.backgroundColor;
+      const selectedFabric = document.querySelector(".fabric-btn.selected").textContent;
+      const productName = document.querySelector(".modal-info h2").textContent;
+      const productPrice = document.querySelector(".modal-price").textContent;
+      const message = `Hello, I am interested in ordering:\n\nProduct: ${productName}\nPrice: ${productPrice}\nColor: ${selectedColor}\nFabric: ${selectedFabric}\n\nPlease contact me for further details.`;
+      const phone = "919792171012";
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+      modal.style.display = "none";
+    });
+  });
+});
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+window.addEventListener("click", (e) => {
+  if (e.target == modal) {
+    modal.style.display = "none";
+  }
+});
+// Form Submission
+document.getElementById("measurementForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  alert("Measurement form submitted successfully! We'll contact you soon.");
+  this.reset();
+});
+</script>
+</body>
+</html>
